@@ -1,7 +1,6 @@
 package christmas.controller;
 
 import christmas.model.service.OrderService;
-import christmas.model.service.ReservationService;
 import christmas.view.InputView;
 
 public class OrderController {
@@ -13,7 +12,7 @@ public class OrderController {
         this.inputView = inputView;
     }
 
-    public void setOrder() {
+    public void order() {
         orderService.setOrder(inputView.inputOrderMenu());
     }
 }

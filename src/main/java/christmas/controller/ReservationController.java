@@ -13,7 +13,7 @@ public class ReservationController {
         this.inputView = inputView;
     }
 
-    public void setReservation() {
+    public void reserve() {
         reservationService.reservationDate(inputView.inputDateReservation());
     }
 
