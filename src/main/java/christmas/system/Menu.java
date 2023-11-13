@@ -3,7 +3,7 @@ package christmas.system;
 public enum Menu {
     PINE_MUSHROOM_SOUP("양송이수프", 6000),
     TAPAS("타파스", 5500),
-    CAESER_SALAD("산타", 20000),
+    CAESER_SALAD("시저샐러드", 20000),
     T_BONE_STAKE("티본스테이크", 55000),
     BBQ_RIBS("바비큐립", 54000),
     SEAFOOD_PASTA("해산물파스타", 35000),
