@@ -1,16 +1,19 @@
 package christmas.model.domain;
 
-import java.util.Arrays;
+import christmas.system.Exception;
+import java.util.HashSet;
 import java.util.List;
 
-public class Order {
-
-    private final List<Dish> dishList;
+public record Order(List<Dish> dishList) {
 
     public Order(List<Dish> dishList) {
+        validateDuplicate(dishList);
         this.dishList = dishList;
     }
 
-
-
+    public void validateDuplicate(List<Dish> dishList) {
+        if(new HashSet<>(dishList).size() != dishList.size()) {
+            throw new IllegalArgumentException(Exception.ORDER_MENU_ERROR.getErrorMessage());
+        }
+    }
 }

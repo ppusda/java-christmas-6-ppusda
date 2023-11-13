@@ -5,9 +5,10 @@ import static christmas.system.Validation.ORDER_DISH_AMOUNT_PATTERN;
 
 import christmas.system.Menu;
 import christmas.system.Validation;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
-public record Dish(String name, String amount) {
+public record Dish (String name, String amount){
 
     public Dish(String name, String amount) {
         validateAmountIsNumber(amount);
@@ -39,5 +40,22 @@ public record Dish(String name, String amount) {
                 Validation.ORDER_MENU_MIN_RANGE.getPhrase())) {
             throw new IllegalArgumentException(ORDER_MENU_ERROR.getErrorMessage());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Dish dish = (Dish) o;
+        return Objects.equals(name, dish.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

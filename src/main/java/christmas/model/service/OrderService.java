@@ -6,23 +6,18 @@ import christmas.system.Exception;
 import christmas.system.Phrase;
 import christmas.system.Validation;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class OrderService {
 
-    private List<Dish> dishList;
-
-    public List<Dish> getDishList() {
-        return dishList;
-    }
-
-    public void setOrder(String inputOrder) {
+    public Order setOrder(String inputOrder) {
         validateIsMatched(inputOrder);
-        dishList = Arrays.stream(splitInputOrder(inputOrder))
-                .map(this::splitOrder)
-                .toList();
+        return new Order(
+                Stream.of(splitInputOrder(inputOrder))
+                        .map(this::splitOrder)
+                        .toList()
+        );
     }
 
     public void validateIsMatched(String inputOrder) {
@@ -35,8 +30,8 @@ public class OrderService {
         return inputOrder.split(Phrase.ORDER_INPUT_DELIMITER.getPhrase());
     }
 
-    public Dish splitOrder(String order) {
-        String[] dish = order.split(Phrase.ORDER_DELIMITER.getPhrase());
-        return new Dish(dish[0], dish[1]);
+    public Dish splitOrder(String orderWithAmount) {
+        String[] order = orderWithAmount.split(Phrase.ORDER_DELIMITER.getPhrase());
+        return new Dish(order[0], order[1]);
     }
 }
