@@ -1,7 +1,7 @@
 package christmas.model.domain;
 
 import static christmas.system.Exception.ORDER_MENU_ERROR;
-import static christmas.system.Validation.ORDER_MENU_PATTERN;
+import static christmas.system.Validation.ORDER_DISH_AMOUNT_PATTERN;
 
 import christmas.system.Menu;
 import christmas.system.Validation;
@@ -29,7 +29,7 @@ public record Dish(String name, String amount) {
     }
 
     private void validateAmountIsNumber(String name) {
-        if (!Pattern.matches(ORDER_MENU_PATTERN.getPhrase(), name)) {
+        if (!Pattern.matches(ORDER_DISH_AMOUNT_PATTERN.getPhrase(), name)) {
             throw new IllegalArgumentException(ORDER_MENU_ERROR.getErrorMessage());
         }
     }

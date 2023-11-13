@@ -14,6 +14,6 @@ public class OrderController {
     }
 
     public void setOrder() {
-        orderService
+        orderService.setOrder(inputView.inputOrderMenu());
     }
 }
