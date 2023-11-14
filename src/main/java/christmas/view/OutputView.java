@@ -4,6 +4,7 @@ import static christmas.system.Message.OUTPUT_LINE_BREAK;
 
 import christmas.model.domain.Benefit;
 import christmas.model.domain.Dish;
+import christmas.model.domain.Giveaway;
 import christmas.model.domain.Order;
 import christmas.model.domain.Reservation;
 import christmas.model.domain.Result;
@@ -45,53 +46,77 @@ public class OutputView {
     }
 
     public void printGiveawayMenu(Result result) {
-        printCategoryMessage(Message.OUTPUT_GIVEAWAY_MENU.getMessage());
-        printMenuMessage(Message.OUTPUT_MENU_WITH_AMOUNT.getMessage(),
-                result.benefitDish().menu().getName(), result.benefitDish().amount()); // 샴페인 n개
+        if (result.giveaway().amount() != 0) {
+            printCategoryMessage(Message.OUTPUT_GIVEAWAY_MENU.getMessage());
+            printMenuMessage(Message.OUTPUT_MENU_WITH_AMOUNT.getMessage(),
+                    result.giveaway().menu().getName(), String.valueOf(result.giveaway().amount())); // 샴페인 n개
+        }
+        printNone();
     }
 
     public void printBenefitList(Result result) {
         printCategoryMessage(Message.OUTPUT_BENEFIT_LIST.getMessage());
-        printChristmasDiscount(result.benefit().christmasDiscount());
-        printWeekdayDiscount(result.benefit().weekdayDiscount());
-        printWeekendDiscount(result.benefit().weekendDiscount());
-        printSpecialDiscount(result.benefit().specialDiscount());
-        printGiveawayDiscount(result.benefitDish());
+
+        boolean checkPrint = false;
+        checkPrint |= printChristmasDiscount(result.benefit().christmasDiscount());
+        checkPrint |= printWeekdayDiscount(result.benefit().weekdayDiscount());
+        checkPrint |= printWeekendDiscount(result.benefit().weekendDiscount());
+        checkPrint |= printSpecialDiscount(result.benefit().specialDiscount());
+        checkPrint |= printGiveawayDiscount(result.giveaway());
+
+        if (!checkPrint) {
+            printNone();
+        }
     }
 
-    public void printChristmasDiscount(int christmasDiscount) {
+    public boolean printChristmasDiscount(int christmasDiscount) {
         if (christmasDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_CHRISTMAS_DISCOUNT.getMessage(),
                     christmasDiscount);
+            return true;
         }
+
+        return false;
     }
 
-    public void printWeekdayDiscount(int weekdayDiscount) {
+    public boolean printWeekdayDiscount(int weekdayDiscount) {
         if (weekdayDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_WEEKDAY_DISCOUNT.getMessage(),
                     weekdayDiscount);
+            return true;
         }
+
+        return false;
     }
 
-    public void printWeekendDiscount(int weekendDiscount) {
+    public boolean printWeekendDiscount(int weekendDiscount) {
         if (weekendDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_WEEKEND_DISCOUNT.getMessage(),
                     weekendDiscount);
+            return true;
         }
+
+        return false;
     }
 
-    public void printSpecialDiscount(int specialDiscount) {
+    public boolean printSpecialDiscount(int specialDiscount) {
         if (specialDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_SPECIAL_DISCOUNT.getMessage(),
                     specialDiscount);
+            return true;
         }
+
+        return false;
     }
 
-    public void printGiveawayDiscount(Dish dish) {
-        if (Integer.parseInt(dish.amount()) != 0) {
+    public boolean printGiveawayDiscount(Giveaway giveaway) {
+        if (giveaway.amount() != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_GIVEAWAY_EVENT.getMessage(),
-                    dish.menu().getPrice());
+                    giveaway.menu().getPrice());
+            return true;
         }
+
+        return false;
     }
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
@@ -139,6 +164,10 @@ public class OutputView {
     public String formatAmount(int amount) {
         DecimalFormat decimalFormat = new DecimalFormat(Phrase.AMOUNT_FORMAT.getPhrase());
         return decimalFormat.format(amount);
+    }
+
+    public void printNone() {
+        System.out.println(Message.OUTPUT_NONE.getMessage());
     }
 
 }

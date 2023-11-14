@@ -2,6 +2,7 @@ package christmas.model.service;
 
 import christmas.model.domain.Benefit;
 import christmas.model.domain.Dish;
+import christmas.model.domain.Giveaway;
 import christmas.system.Calendar;
 import christmas.system.Constant;
 import christmas.system.Menu;
@@ -75,16 +76,16 @@ public class BenefitService {
                 .anyMatch(day -> day.equals(reservationService.getReservation().date()));
     }
 
-    public Dish checkGiveawayBenefit(int totalAmount) {
+    public Giveaway checkGiveawayBenefit(int totalAmount) {
         if (totalAmount >= Constant.GIVEAWAY_AMOUNT_CONDITION.getConstant()) {
-            return new Dish(Menu.CHAMPAGNE, "1");
+            return new Giveaway(Menu.CHAMPAGNE, 1);
         }
-        return new Dish(Menu.CHAMPAGNE, "0");
+        return new Giveaway(Menu.CHAMPAGNE, 0);
     }
 
-    public int getGiveawayBenefit(Dish giveawayDish) {
-        if (Integer.parseInt(giveawayDish.amount()) > 0) {
-            return giveawayDish.menu().getPrice();
+    public int getGiveawayBenefit(Giveaway giveawayGiveaway) {
+        if (giveawayGiveaway.amount() > 0) {
+            return giveawayGiveaway.menu().getPrice();
         }
 
         return 0;

@@ -1,6 +1,7 @@
 package christmas.model.service;
 
 import christmas.model.domain.Dish;
+import christmas.model.domain.Giveaway;
 import christmas.model.domain.Result;
 import christmas.system.Badge;
 
@@ -12,7 +13,7 @@ public class ResultService {
     private final BenefitService benefitService;
 
     private int totalAmount = 0;
-    private Dish benefitDish;
+    private Giveaway giveaway;
 
     public ResultService(OrderService orderService, BenefitService benefitService) {
         this.orderService = orderService;
@@ -21,11 +22,11 @@ public class ResultService {
 
     public void setResult() {
         calculateTotalAmount();
-        benefitDish = benefitService.checkGiveawayBenefit(totalAmount);
+        giveaway = benefitService.checkGiveawayBenefit(totalAmount);
 
         result = new Result(totalAmount, calculateTotalBenefitAmount(),
                 calculateTotalPurchaseAmount(),
-                benefitService.getBenefit(), benefitDish, getBadge());
+                benefitService.getBenefit(), giveaway, getBadge());
     }
 
     public void calculateTotalAmount() {
@@ -36,7 +37,7 @@ public class ResultService {
 
     public int calculateTotalBenefitAmount() {
         return benefitService.getTotalBenefitAmount()
-                + benefitService.getGiveawayBenefit(benefitDish);
+                + benefitService.getGiveawayBenefit(giveaway);
     }
 
     public int calculateTotalPurchaseAmount() {

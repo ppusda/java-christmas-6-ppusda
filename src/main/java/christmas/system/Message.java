@@ -20,7 +20,8 @@ public enum Message {
     OUTPUT_TOTAL_PURCHASE_AMOUNT("<할인 후 예상 결제 금액>"),
     OUTPUT_UNIT("%s원"),
     OUTPUT_EVENT_BADGE("<12월 이벤트 배지>"),
-    OUTPUT_LINE_BREAK("\n");
+    OUTPUT_LINE_BREAK("\n"),
+    OUTPUT_NONE("없음");
 
     Message(String message) {
         this.message = message;
