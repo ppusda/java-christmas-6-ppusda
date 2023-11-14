@@ -1,31 +1,41 @@
 package christmas.view;
 
+import static christmas.system.Message.OUTPUT_LINE_BREAK;
+
+import christmas.model.domain.Dish;
+import christmas.model.domain.Order;
+import christmas.model.domain.Reservation;
 import christmas.system.Badge;
 import christmas.system.Message;
 
 public class OutputView {
+
     public void printWelcomeMessage() {
         printMessage(Message.OUTPUT_WELCOME_MESSAGE.getMessage());
     }
 
-    public void printPreviewMessage(int day) {
-        System.out.printf(Message.OUTPUT_PREVIEW.getMessage(), day);
+    public void printBenefitPreview(Reservation reservation, Order order) {
+        printFormatMessage(Message.OUTPUT_PREVIEW.getMessage(), reservation.date());
+        printOrderMenu(order);
     }
 
-    public void printOrderMenu() {
-        System.out.println(Message.OUTPUT_ORDER_MENU);
-        // TODO : foreach 이용하여 구현
-        System.out.print(Message.OUTPUT_MENU_WITH_AMOUNT); // 음식 n개
+    public void printOrderMenu(Order order) {
+        printCategoryMessage(Message.OUTPUT_ORDER_MENU.getMessage());
+        for (Dish dish : order.dishList()) {
+            printMenuMessage(Message.OUTPUT_MENU_WITH_AMOUNT.getMessage(),
+                    dish.name(), dish.amount());
+        }
     }
 
     public void printTotalAmount() {
-        System.out.println(Message.OUTPUT_TOTAL_AMOUNT.getMessage());
-        System.out.printf(Message.OUTPUT_UNIT.getMessage(), "50,000");
+        printMessage(Message.OUTPUT_TOTAL_AMOUNT.getMessage());
+        printFormatMessage(Message.OUTPUT_UNIT.getMessage(), "50,000");
     }
 
     public void printGiveawayMenu() {
-        System.out.println(Message.OUTPUT_GIVEAWAY_MENU.getMessage());
-        System.out.println(Message.OUTPUT_MENU_WITH_AMOUNT); // 샴페인 n개
+        printMessage(Message.OUTPUT_GIVEAWAY_MENU.getMessage());
+        printFormatMessage(Message.OUTPUT_MENU_WITH_AMOUNT.getMessage(),
+                ""); // 샴페인 n개
     }
 
     public void printBenefitList() {
@@ -50,6 +60,18 @@ public class OutputView {
 
     public void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printCategoryMessage(String message) {
+        System.out.println(OUTPUT_LINE_BREAK.getMessage() + message);
+    }
+
+    public void printFormatMessage(String message, String format) {
+        System.out.printf(message + OUTPUT_LINE_BREAK.getMessage(), format);
+    }
+
+    public void printMenuMessage(String message, String name, String amount) {
+        System.out.printf(message + OUTPUT_LINE_BREAK.getMessage(), name, amount);
     }
 
     public void printErrorMessage(String errorMessage) {

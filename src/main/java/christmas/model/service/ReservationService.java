@@ -9,4 +9,8 @@ public class ReservationService {
     public void reservationDate(String date) {
         reservation = new Reservation(date);
     }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
 }

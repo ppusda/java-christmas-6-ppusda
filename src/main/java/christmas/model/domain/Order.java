@@ -16,4 +16,9 @@ public record Order(List<Dish> dishList) {
             throw new IllegalArgumentException(Exception.ORDER_MENU_ERROR.getErrorMessage());
         }
     }
+
+    @Override
+    public List<Dish> dishList() {
+        return dishList;
+    }
 }

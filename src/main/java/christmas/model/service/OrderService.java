@@ -11,9 +11,11 @@ import java.util.stream.Stream;
 
 public class OrderService {
 
-    public Order setOrder(String inputOrder) {
+    private Order order;
+
+    public void setOrder(String inputOrder) {
         validateIsMatched(inputOrder);
-        return new Order(
+        order = new Order(
                 Stream.of(splitInputOrder(inputOrder))
                         .map(this::splitOrder)
                         .toList()
@@ -33,5 +35,9 @@ public class OrderService {
     public Dish splitOrder(String orderWithAmount) {
         String[] order = orderWithAmount.split(Phrase.ORDER_DELIMITER.getPhrase());
         return new Dish(order[0], order[1]);
+    }
+
+    public Order getOrder() {
+        return order;
     }
 }

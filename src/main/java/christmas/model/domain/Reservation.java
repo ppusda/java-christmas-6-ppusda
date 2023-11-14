@@ -28,4 +28,9 @@ public record Reservation(String date) {
             throw new IllegalArgumentException(Exception.RESERVATION_INPUT_ERROR.getErrorMessage());
         }
     }
+
+    @Override
+    public String date() {
+        return date;
+    }
 }

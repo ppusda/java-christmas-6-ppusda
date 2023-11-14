@@ -23,7 +23,11 @@ public class PromotionProcessor {
     private final OrderController orderController = new OrderController(orderService, inputView);
 
     public void run() {
+        outputView.printWelcomeMessage();
+
         promotionUtil.tryUntilValidate(reservationController::reserve);
         promotionUtil.tryUntilValidate(orderController::order);
+
+        outputView.printBenefitPreview(reservationService.getReservation(), orderService.getOrder());
     }
 }
