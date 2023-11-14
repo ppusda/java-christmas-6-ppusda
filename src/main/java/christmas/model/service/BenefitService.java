@@ -1,7 +1,6 @@
 package christmas.model.service;
 
 import christmas.model.domain.Benefit;
-import christmas.model.domain.Dish;
 import christmas.model.domain.Giveaway;
 import christmas.system.Calendar;
 import christmas.system.Constant;

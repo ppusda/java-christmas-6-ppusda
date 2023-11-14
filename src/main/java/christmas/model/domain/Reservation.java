@@ -8,10 +8,9 @@ import java.util.regex.Pattern;
 
 public record Reservation(String date) {
 
-    public Reservation(String date) {
+    public Reservation {
         validateIsNumber(date);
         validateIsInRange(date);
-        this.date = date;
     }
 
     public void validateIsNumber(String date) {

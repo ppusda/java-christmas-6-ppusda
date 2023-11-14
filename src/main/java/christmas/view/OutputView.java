@@ -2,7 +2,6 @@ package christmas.view;
 
 import static christmas.system.Message.OUTPUT_LINE_BREAK;
 
-import christmas.model.domain.Benefit;
 import christmas.model.domain.Dish;
 import christmas.model.domain.Giveaway;
 import christmas.model.domain.Order;

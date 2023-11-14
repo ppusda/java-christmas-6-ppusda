@@ -10,12 +10,9 @@ import java.util.regex.Pattern;
 
 public record Dish (Menu menu, String amount){
 
-    public Dish(Menu menu, String amount) {
+    public Dish {
         validateAmountIsNumber(amount);
         validateAmountInRange(amount);
-
-        this.menu = menu;
-        this.amount = amount;
     }
 
     public void validateAmountIsNumber(String amount) {

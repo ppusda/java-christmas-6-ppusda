@@ -6,9 +6,8 @@ import java.util.List;
 
 public record Order(List<Dish> dishList) {
 
-    public Order(List<Dish> dishList) {
+    public Order {
         validateDuplicate(dishList);
-        this.dishList = dishList;
     }
 
     public void validateDuplicate(List<Dish> dishList) {
