@@ -1,8 +1,6 @@
 package christmas.util;
 
 import christmas.view.OutputView;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class PromotionUtil {
 

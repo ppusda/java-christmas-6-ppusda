@@ -27,7 +27,7 @@ public class BenefitService {
                 checkWeekendBenefit(),
                 checkSpecialBenefit());
 
-        totalBenefitAmount = getTotalBenefitAmount();
+        setTotalBenefitAmount();
     }
 
     public int checkChristmasBenefit() {
@@ -82,21 +82,22 @@ public class BenefitService {
         return new Dish(Menu.CHAMPAGNE, "0");
     }
 
-    public int getGiveawayBenefit(int totalAmount) {
-        Dish giveawayDist = checkGiveawayBenefit(totalAmount);
-        if (Integer.parseInt(giveawayDist.amount()) > 0) {
-            return giveawayDist.menu().getPrice();
+    public int getGiveawayBenefit(Dish giveawayDish) {
+        if (Integer.parseInt(giveawayDish.amount()) > 0) {
+            return giveawayDish.menu().getPrice();
         }
 
         return 0;
     }
 
-    public int getTotalBenefitAmount() {
+    public void setTotalBenefitAmount() {
         addDateDiscount(benefit.christmasDiscount());
         addDateDiscount(benefit.weekdayDiscount());
         addDateDiscount(benefit.weekendDiscount());
         addDateDiscount(benefit.specialDiscount());
+    }
 
+    public int getTotalBenefitAmount() {
         return totalBenefitAmount;
     }
 

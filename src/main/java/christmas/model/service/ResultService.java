@@ -11,6 +11,7 @@ public class ResultService {
     private final BenefitService benefitService;
 
     private int totalAmount = 0;
+    private Dish benefitDish;
 
     public ResultService(OrderService orderService, BenefitService benefitService) {
         this.orderService = orderService;
@@ -19,8 +20,11 @@ public class ResultService {
 
     public void setResult() {
         calculateTotalAmount();
-        result = new Result(totalAmount, calculateTotalPurchaseAmount(),
-                benefitService.getBenefit());
+        benefitDish = benefitService.checkGiveawayBenefit(totalAmount);
+
+        result = new Result(totalAmount, calculateTotalBenefitAmount(),
+                calculateTotalPurchaseAmount(),
+                benefitService.getBenefit(), benefitDish);
     }
 
     public void calculateTotalAmount() {
@@ -29,9 +33,13 @@ public class ResultService {
         }
     }
 
+    public int calculateTotalBenefitAmount() {
+        return benefitService.getTotalBenefitAmount()
+                + benefitService.getGiveawayBenefit(benefitDish);
+    }
+
     public int calculateTotalPurchaseAmount() {
-        return totalAmount - (benefitService.getTotalBenefitAmount()
-                + benefitService.getGiveawayBenefit(totalAmount));
+        return totalAmount - calculateTotalBenefitAmount();
     }
 
     public Result getResult() {

@@ -43,6 +43,10 @@ public class PromotionProcessor {
         benefitController.calculateBenefit();
         resultController.createResult();
 
-        outputView.printBenefitPreview(reservationService.getReservation(), orderService.getOrder());
+        outputView.printBenefitPreview(
+                reservationService.getReservation(),
+                orderService.getOrder(),
+                resultService.getResult()
+        );
     }
 }
