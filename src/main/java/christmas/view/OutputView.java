@@ -28,6 +28,7 @@ public class OutputView {
 
         printTotalBenefitAmount(result.totalBenefitAmount());
         printTotalPurchaseAmount(result.totalPurchaseAmount());
+        printEventBadge(result.badge());
     }
 
     public void printOrderMenu(Order order) {
@@ -61,53 +62,53 @@ public class OutputView {
     public void printChristmasDiscount(int christmasDiscount) {
         if (christmasDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_CHRISTMAS_DISCOUNT.getMessage(),
-                    String.valueOf(christmasDiscount));
+                    christmasDiscount);
         }
     }
 
     public void printWeekdayDiscount(int weekdayDiscount) {
         if (weekdayDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_WEEKDAY_DISCOUNT.getMessage(),
-                    String.valueOf(weekdayDiscount));
+                    weekdayDiscount);
         }
     }
 
     public void printWeekendDiscount(int weekendDiscount) {
         if (weekendDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_WEEKEND_DISCOUNT.getMessage(),
-                    String.valueOf(weekendDiscount));
+                    weekendDiscount);
         }
     }
 
     public void printSpecialDiscount(int specialDiscount) {
         if (specialDiscount != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_SPECIAL_DISCOUNT.getMessage(),
-                    String.valueOf(specialDiscount));
+                    specialDiscount);
         }
     }
 
     public void printGiveawayDiscount(Dish dish) {
         if (Integer.parseInt(dish.amount()) != 0) {
             printDiscountMessage(Message.OUTPUT_BENEFIT_GIVEAWAY_EVENT.getMessage(),
-                    String.valueOf(dish.menu().getPrice()));
+                    dish.menu().getPrice());
         }
     }
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
         printCategoryMessage(Message.OUTPUT_TOTAL_BENEFIT.getMessage());
         printFormatMessage(Message.OUTPUT_BENEFIT_UNIT.getMessage(),
-                String.valueOf(totalBenefitAmount));
+                formatAmount(totalBenefitAmount));
     }
 
     public void printTotalPurchaseAmount(int totalPurchaseAmount) {
         printCategoryMessage(Message.OUTPUT_TOTAL_PURCHASE_AMOUNT.getMessage());
         printFormatMessage(Message.OUTPUT_UNIT.getMessage(),
-                String.valueOf(totalPurchaseAmount));
+                formatAmount(totalPurchaseAmount));
     }
 
-    public void printEventBadge() {
+    public void printEventBadge(Badge badge) {
         printCategoryMessage(Message.OUTPUT_EVENT_BADGE.getMessage());
-        System.out.println(Badge.SANTA.getName()); // 로직 구현 필요
+        printMessage(badge.getName());
     }
 
     public void printMessage(String message) {
@@ -126,9 +127,9 @@ public class OutputView {
         System.out.printf(message + OUTPUT_LINE_BREAK.getMessage(), name, amount);
     }
 
-    public void printDiscountMessage(String discountMessage, String format) {
+    public void printDiscountMessage(String discountMessage, int format) {
         System.out.print(discountMessage);
-        printFormatMessage(Message.OUTPUT_BENEFIT_UNIT.getMessage(), format);
+        printFormatMessage(Message.OUTPUT_BENEFIT_UNIT.getMessage(), formatAmount(format));
     }
 
     public void printErrorMessage(String errorMessage) {

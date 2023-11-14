@@ -2,6 +2,7 @@ package christmas.model.service;
 
 import christmas.model.domain.Dish;
 import christmas.model.domain.Result;
+import christmas.system.Badge;
 
 public class ResultService {
 
@@ -24,7 +25,7 @@ public class ResultService {
 
         result = new Result(totalAmount, calculateTotalBenefitAmount(),
                 calculateTotalPurchaseAmount(),
-                benefitService.getBenefit(), benefitDish);
+                benefitService.getBenefit(), benefitDish, getBadge());
     }
 
     public void calculateTotalAmount() {
@@ -40,6 +41,22 @@ public class ResultService {
 
     public int calculateTotalPurchaseAmount() {
         return totalAmount - calculateTotalBenefitAmount();
+    }
+
+    public Badge getBadge() {
+        int totalBenefitAmount = calculateTotalBenefitAmount();
+
+        if (Badge.STAR.getConditionAmount() <= totalBenefitAmount &&
+        Badge.TREE.getConditionAmount() > totalBenefitAmount) {
+            return Badge.STAR;
+        } else if (Badge.TREE.getConditionAmount() <= totalBenefitAmount &&
+        Badge.SANTA.getConditionAmount() > totalBenefitAmount) {
+            return Badge.TREE;
+        } else if (Badge.SANTA.getConditionAmount() <= totalBenefitAmount) {
+            return Badge.SANTA;
+        }
+
+        return Badge.NONE;
     }
 
     public Result getResult() {

@@ -1,5 +1,8 @@
 package christmas.model.domain;
 
-public record Result(int totalAmount, int totalBenefitAmount, int totalPurchaseAmount, Benefit benefit, Dish benefitDish) {
+import christmas.system.Badge;
+
+public record Result(int totalAmount, int totalBenefitAmount, int totalPurchaseAmount,
+                     Benefit benefit, Dish benefitDish, Badge badge) {
 
 }
