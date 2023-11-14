@@ -14,13 +14,13 @@ public record Reservation(String date) {
         this.date = date;
     }
 
-    private void validateIsNumber(String date) {
+    public void validateIsNumber(String date) {
         if (!Pattern.matches(RESERVATION_DATE_PATTERN.getPhrase(), date)) {
             throw new IllegalArgumentException(Exception.RESERVATION_INPUT_ERROR.getErrorMessage());
         }
     }
 
-    private void validateIsInRange(String date) {
+    public void validateIsInRange(String date) {
         int parsedDate = Integer.parseInt(date);
         if (parsedDate < Integer.parseInt(Validation.RESERVATION_MIN_DATE_RANGE.getPhrase())
                 || parsedDate > Integer.parseInt(

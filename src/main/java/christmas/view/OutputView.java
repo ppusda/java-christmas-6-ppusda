@@ -23,7 +23,7 @@ public class OutputView {
         printCategoryMessage(Message.OUTPUT_ORDER_MENU.getMessage());
         for (Dish dish : order.dishList()) {
             printMenuMessage(Message.OUTPUT_MENU_WITH_AMOUNT.getMessage(),
-                    dish.name(), dish.amount());
+                    dish.menu().getName(), dish.amount());
         }
     }
 
