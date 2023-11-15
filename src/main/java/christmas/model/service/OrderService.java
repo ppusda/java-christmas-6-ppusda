@@ -48,6 +48,7 @@ public class OrderService {
         validateDishInMenu(order[0]);
         return new Dish(getMenu(order[0]), order[1]);
     }
+
     public Menu getMenu(String name) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.getName().equals(name))

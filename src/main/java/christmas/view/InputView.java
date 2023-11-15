@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import christmas.system.Message;
 
 public class InputView {
+
     public String inputDateReservation() {
         printMessage(Message.INPUT_SCHEDULE.getMessage());
         return Console.readLine().trim();

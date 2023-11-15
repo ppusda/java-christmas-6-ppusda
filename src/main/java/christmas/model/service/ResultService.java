@@ -48,10 +48,10 @@ public class ResultService {
         int totalBenefitAmount = calculateTotalBenefitAmount();
 
         if (Badge.STAR.getConditionAmount() <= totalBenefitAmount &&
-        Badge.TREE.getConditionAmount() > totalBenefitAmount) {
+                Badge.TREE.getConditionAmount() > totalBenefitAmount) {
             return Badge.STAR;
         } else if (Badge.TREE.getConditionAmount() <= totalBenefitAmount &&
-        Badge.SANTA.getConditionAmount() > totalBenefitAmount) {
+                Badge.SANTA.getConditionAmount() > totalBenefitAmount) {
             return Badge.TREE;
         } else if (Badge.SANTA.getConditionAmount() <= totalBenefitAmount) {
             return Badge.SANTA;

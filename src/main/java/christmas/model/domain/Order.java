@@ -11,7 +11,7 @@ public record Order(List<Dish> dishList) {
     }
 
     public void validateDuplicate(List<Dish> dishList) {
-        if(new HashSet<>(dishList).size() != dishList.size()) {
+        if (new HashSet<>(dishList).size() != dishList.size()) {
             throw new IllegalArgumentException(Exception.ORDER_MENU_ERROR.getErrorMessage());
         }
     }

@@ -7,7 +7,7 @@ public enum Menu {
     T_BONE_STAKE("티본스테이크", 55000, "main"),
     BBQ_RIBS("바비큐립", 54000, "main"),
     SEAFOOD_PASTA("해산물파스타", 35000, "main"),
-    CHRISTMAS_PASTA("크리스마스파스타",25000, "main"),
+    CHRISTMAS_PASTA("크리스마스파스타", 25000, "main"),
     CHOCO_CAKE("초코케이크", 15000, "dessert"),
     ICE_CREAM("아이스크림", 5000, "dessert"),
     ZERO_COLA("제로콜라", 3000, "beverage"),

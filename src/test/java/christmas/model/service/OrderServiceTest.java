@@ -54,7 +54,7 @@ class OrderServiceTest {
     @DisplayName("주문 목록을 분리한다.")
     void splitInputOrder() {
         String[] splitOrder = orderService.splitInputOrder("해산물파스타-2,레드와인-1,초코케이크-1");
-        String[] splitedOrder = new String[] {"해산물파스타-2", "레드와인-1", "초코케이크-1"};
+        String[] splitedOrder = new String[]{"해산물파스타-2", "레드와인-1", "초코케이크-1"};
 
         assertEquals(splitedOrder[0], splitOrder[0]);
         assertEquals(splitedOrder[1], splitOrder[1]);

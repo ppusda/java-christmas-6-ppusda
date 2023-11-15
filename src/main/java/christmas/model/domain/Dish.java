@@ -8,7 +8,7 @@ import christmas.system.Validation;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public record Dish (Menu menu, String amount){
+public record Dish(Menu menu, String amount) {
 
     public Dish {
         validateAmountIsNumber(amount);

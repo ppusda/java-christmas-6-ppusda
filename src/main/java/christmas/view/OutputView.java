@@ -48,7 +48,9 @@ public class OutputView {
         if (result.giveaway().amount() != 0) {
             printCategoryMessage(Message.OUTPUT_GIVEAWAY_MENU.getMessage());
             printMenuMessage(Message.OUTPUT_MENU_WITH_AMOUNT.getMessage(),
-                    result.giveaway().menu().getName(), String.valueOf(result.giveaway().amount())); // 샴페인 n개
+                    result.giveaway().menu().getName(),
+                    String.valueOf(result.giveaway().amount())); // 샴페인 n개
+            return;
         }
         printNone();
     }

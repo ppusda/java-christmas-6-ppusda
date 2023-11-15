@@ -4,6 +4,7 @@ import christmas.model.service.OrderService;
 import christmas.view.InputView;
 
 public class OrderController {
+
     private final OrderService orderService;
     private final InputView inputView;
 

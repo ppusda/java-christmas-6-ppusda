@@ -20,13 +20,15 @@ public class PromotionProcessor {
     private final PromotionUtil promotionUtil = new PromotionUtil(outputView);
 
     private final ReservationService reservationService = new ReservationService();
-    private final ReservationController reservationController = new ReservationController(reservationService, inputView);
+    private final ReservationController reservationController = new ReservationController(
+            reservationService, inputView);
 
     private final OrderService orderService = new OrderService();
 
     private final OrderController orderController = new OrderController(orderService, inputView);
 
-    private final BenefitService benefitService = new BenefitService(orderService, reservationService);
+    private final BenefitService benefitService = new BenefitService(orderService,
+            reservationService);
 
     private final ResultService resultService = new ResultService(orderService, benefitService);
 
