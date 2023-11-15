@@ -63,4 +63,8 @@ public class ResultService {
     public Result getResult() {
         return result;
     }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
 }
