@@ -57,10 +57,14 @@ public class OutputView {
         printCategoryMessage(Message.OUTPUT_BENEFIT_LIST.getMessage());
 
         boolean checkPrint = false;
-        checkPrint |= printChristmasDiscount(result.benefit().christmasDiscount());
-        checkPrint |= printWeekdayDiscount(result.benefit().weekdayDiscount());
-        checkPrint |= printWeekendDiscount(result.benefit().weekendDiscount());
-        checkPrint |= printSpecialDiscount(result.benefit().specialDiscount());
+        checkPrint |= printDiscount(result.benefit().christmasDiscount(),
+                Message.OUTPUT_BENEFIT_CHRISTMAS_DISCOUNT.getMessage());
+        checkPrint |= printDiscount(result.benefit().weekdayDiscount(),
+                Message.OUTPUT_BENEFIT_WEEKDAY_DISCOUNT.getMessage());
+        checkPrint |= printDiscount(result.benefit().weekendDiscount(),
+                Message.OUTPUT_BENEFIT_WEEKEND_DISCOUNT.getMessage());
+        checkPrint |= printDiscount(result.benefit().specialDiscount(),
+                Message.OUTPUT_BENEFIT_SPECIAL_DISCOUNT.getMessage());
         checkPrint |= printGiveawayDiscount(result.giveaway());
 
         if (!checkPrint) {
@@ -68,40 +72,9 @@ public class OutputView {
         }
     }
 
-    public boolean printChristmasDiscount(int christmasDiscount) {
-        if (christmasDiscount != 0) {
-            printDiscountMessage(Message.OUTPUT_BENEFIT_CHRISTMAS_DISCOUNT.getMessage(),
-                    christmasDiscount);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean printWeekdayDiscount(int weekdayDiscount) {
-        if (weekdayDiscount != 0) {
-            printDiscountMessage(Message.OUTPUT_BENEFIT_WEEKDAY_DISCOUNT.getMessage(),
-                    weekdayDiscount);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean printWeekendDiscount(int weekendDiscount) {
-        if (weekendDiscount != 0) {
-            printDiscountMessage(Message.OUTPUT_BENEFIT_WEEKEND_DISCOUNT.getMessage(),
-                    weekendDiscount);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean printSpecialDiscount(int specialDiscount) {
-        if (specialDiscount != 0) {
-            printDiscountMessage(Message.OUTPUT_BENEFIT_SPECIAL_DISCOUNT.getMessage(),
-                    specialDiscount);
+    public boolean printDiscount(int discount, String message) {
+        if (discount != 0) {
+            printDiscountMessage(message, discount);
             return true;
         }
 
